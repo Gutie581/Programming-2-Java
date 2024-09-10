@@ -1,4 +1,4 @@
-// Challenge 02 - Daniel Gutierrez - KEA418
+// Challenge 02 - Daniel Gutierrez - KEA418 - 09/08/24
 
 // import required for JOptionPane
 import javax.swing.JOptionPane;
