@@ -1,26 +1,40 @@
-/*
+// Challenge 03 - Daniel Gutierrez - KEA418 - 09/15/24
 
-                    Determine That Case!
-
-Your Java program will perform the following tasks:
-
-1. Using Java Swing, determine whether a character entered by the user is uppercase or lowercase.
-
-2. Inform the user of the result.
-
-3. IF the user enters a value other than an alphabetical letter ( A-Z, a-z), tell the user that you cannot determine the case of a value other than an alphabetical character.
-
-You do not need another method here, just use the main method
-
- */
+// import required for JOptionPane
+import javax.swing.JOptionPane;
 
 public class determineThatCase
 {
-    public static void main(String[] args) // Define main method
+    public static void main(String[] args)
     {
+        // Get input from user.
+        String input = JOptionPane.showInputDialog("Please enter an alphabetical character: ");
 
-        System.out.println("Hello world!");
+        //The variable letter will hold the character inputted.
+        char letter = input.charAt(0);
 
+        // Displays output message in an if, else-if, else statement.
+        String message;
 
+        //Uses relational operators to determine relationship between multiple character values.
+        if (letter >= 'A' && letter <= 'Z')
+        {
+            message = "You entered an UPPERCASE letter!";
+        }
+        else if (letter >= 'a' && letter <= 'z')
+        {
+            message = "You entered a lowercase letter!";
+        }
+        else
+        {
+            message = "Invalid input. I cannot determine the case of a value other than an alphabetical " +
+                    "character. Please try again";
+        }
+
+        // Displays the results
+        JOptionPane.showMessageDialog(null, message);
+
+        // Ends the program
+        System.exit(0);
     }
 }

@@ -23,7 +23,7 @@ public class magicDates
         String message;
         if (month * day == year)            // Multiples month and day then compares it equal to the year.
         {
-            message = "The date is a magic date! Wow!";
+            message = "The number is a  date! Wow!";
         }
         else
         {
