@@ -1,32 +1,15 @@
-Notes from Class:
+//public class Notes9_11_24{ }
+/*
+Strings are basically arrays, where "John". "J" is 0, "o" is 1, "h" is 2 , "n" is 3.
+Uses char.at() for the challenge 3. Helps to
+The charAt() method is used to return the character at a specified index.
+ */
 
-**logical operators**
-&& logical AND     Recall, the && operator is the short-circuit AND operator.
-|| logical OR      Recall, the || operator is the short-circuit OR operator.
-! logical NOT
+// Cheatsheet for Java String methods.
+// https://www.codecademy.com/learn/learn-java/modules/learn-java-string-methods/cheatsheet
 
-**Relational operators**
-    == equal to
-    != not equal to
-    > greater than
-    < less than
-    >= greater than or equal to
-    <= less than or equal to
-
-
-**Displaying formatted output with System.out.printf and String.format**
-When displaying numbers with printf, you can use the following format specifiers:
-%d - integer
-%f - floating point number
-%e - scientific notation
-%c - character
-%s - string
-%b - boolean
-%n - new line
-%% - percent sign
-
-
-**String comparisons Methods**
+/*
+String comparisons Methods
 Layout:
 method - example - description
 
@@ -49,3 +32,19 @@ split - - splits a string into substrings.
 charAt() - - returns the character at a specified index.
 isUpperCase() - (Character.isUpperCase(letter)) - determines if a character is uppercase.
 isLowerCase() - - determines if a character is lowercase.
+
+ */
+
+/*
+Example that is helpful for Challenge 3
+
+Example 6: The following code determines if a character is uppercase or lowercase.
+        char letter = 'A';
+        if (Character.isUpperCase(letter)) {
+            System.out.println("The letter is uppercase.");
+        }
+        else {
+            System.out.println("The letter is lowercase.");
+        }
+
+ */
