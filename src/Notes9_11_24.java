@@ -33,7 +33,8 @@ charAt() - - returns the character at a specified index.
 isUpperCase() - (Character.isUpperCase(letter)) - determines if a character is uppercase.
 isLowerCase() - - determines if a character is lowercase.
 
- */
+*/
+
 
 /*
 Example that is helpful for Challenge 3

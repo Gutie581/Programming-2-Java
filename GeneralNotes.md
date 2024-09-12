@@ -26,6 +26,7 @@ When displaying numbers with printf, you can use the following format specifiers
 %% - percent sign
 
 
+
 **String comparisons Methods**
 Layout:
 method - example - description
