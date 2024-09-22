@@ -1,32 +1,10 @@
-/*
+// Challenge 04 - Daniel Gutierrez - KEA418
 
-File Letter Counter
-
-NOTE: REMEMBER TO USE THE GUI
-
-Overview
-
-Write a program that asks the user to enter the name of a file, and then asks the user to enter a character.
-The program should count and display the number of times that the specified character appears in the file.
-**You can use Notepad or another text editor to create a simple file that can be used to test the program.
-
-Paste the following text into your file:
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-Test Data:
-
-I will test how many times the character 'e' appears in the text above.
-
- */
 
 // import required.
 import javax.swing.JOptionPane;
 import java.io.*;
-
+import java.util.Scanner;
 
 
 public class FileLetterCounter
@@ -34,54 +12,68 @@ public class FileLetterCounter
     public static void main(String[] args)
     {
         // Ask user for file name
-        String fileName = JOptionPane.showInputDialog("Enter a file name");
+        String fileName;
+
+        // Do-while loop since challenge states to ask user for the name of a file.
+        do
+        {
+            fileName = JOptionPane.showInputDialog("Enter the name of the file: ");
+
+            // Uses the NOT logical operator and equals method to see if input matches the "output" text.
+            if (!fileName.equals("output"))
+            {
+                JOptionPane.showMessageDialog(null, "File not found. Please try again. " +
+                        "\nHint: Use \"output\" as the file name.");
+            }
+        }
+        while (!fileName.equals("output"));
 
         // Ask user for the character to count
-        String charCount = JOptionPane.showInputDialog("Enter a character to count");
+        String charCount = JOptionPane.showInputDialog("Enter a character to count: ");
 
-        // Takes the first character from the user.
+        // Takes the first character from the user's input.
         char numberChar = charCount.charAt(0);
+
+        // Initializes count as integer
+        int count = 0;
 
         try
         {
-            // Create and write to the new file
-            FileWriter fileWriter = new FileWriter("C:/Users/gutie/Desktop", true);
-            PrintWriter printWriter = new PrintWriter(fileWriter);
+            // Open a file to read using FileReader and Scanner
+            FileReader fileReader = new FileReader("C:/Users/gutie/Desktop/output.txt");
+            Scanner fileScanner = new Scanner(fileReader);
 
-            String text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore\n" +
-                    "magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n" +
-                    "consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\n" +
-                    "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-
-            FileReader fileReader = new FileReader(fileName);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-
-            int count = 0;
-            int c;
-            while ((c = bufferedReader.read()) != -1)
+            // While loop to continue as long as there is another line to read in the file
+            while (fileScanner.hasNextLine())
             {
-                if ((char) c == numberChar)
+                // Stores next line of file as nextLine variable and reads next line in file
+                String nextLine = fileScanner.nextLine();
+
+                // For loop iterates through each character and index increments by 1
+                for (int i = 0; i < nextLine.length(); i += 1)
                 {
-                    count ++;
+                    // If loop to check if the character at index position is equal to the inputted first character
+                    if (nextLine.charAt(i) == numberChar)
+                    {
+                        count += 1;        // If character is equal, add 1 to the count
+                    }
                 }
             }
-            bufferedReader.close();
+
+            // Close reader and scanner
+            fileScanner.close();
+            fileReader.close();
 
             // Display the results
-            JOptionPane.showMessageDialog(null, "Number of times " + numberChar +
-                    "appears in the file is " + count + " times");
+            JOptionPane.showMessageDialog(null, "Number of times " + "\"" + numberChar + "\"" +
+                    " appears in the file is " + count + " times.");
         }
-        catch (IOException e)
+        catch (Exception e)             // Catches any generic exceptions that are thrown
         {
             JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
-
         }
 
-
-
-
+        // Ends the program
+        System.exit(0);
     }
-
-
-
 }
