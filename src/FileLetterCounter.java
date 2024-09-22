@@ -14,7 +14,7 @@ public class FileLetterCounter
         // Ask user for file name
         String fileName;
 
-        // Do-while loop since challenge states to ask user for the name of a file.
+        // Do-while loop since challenge states to ask user for the name of a file but haven't learned another way.
         do
         {
             fileName = JOptionPane.showInputDialog("Enter the name of the file: ");
@@ -40,7 +40,7 @@ public class FileLetterCounter
         try
         {
             // Open a file to read using FileReader and Scanner
-            FileReader fileReader = new FileReader("C:/Users/gutie/Desktop/output.txt");
+            FileReader fileReader = new FileReader("C:/Users/burres/Desktop/output.txt");
             Scanner fileScanner = new Scanner(fileReader);
 
             // While loop to continue as long as there is another line to read in the file
