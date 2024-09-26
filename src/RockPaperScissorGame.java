@@ -7,8 +7,11 @@ import java.util.*;
 public class RockPaperScissorGame {
     public static void main(String[] args)
     {
-        // While loop in the main method to process other methods.
-        while (true)
+        // As long as the boolean variable continueGame is true, the game will run.
+        boolean continueGame = true;
+
+        // While continueGame variable is true, continue the loop in the main method to process other methods.
+        while (continueGame)
         {
             // Calls other methods as int and strings. Passes the computerChoice integer argument to convertChoice
             // method to convert the computer's random number selection to a string. Each stored as variables.
@@ -25,11 +28,16 @@ public class RockPaperScissorGame {
             // Displays what the determineWinner method returned to the results variable.
             JOptionPane.showMessageDialog(null, results);
 
-            // If the results don't equal each other, then breaks out of the while loop and ends the game.
-            // If they do equal each other, displays message. Ends game.
-            if (!results.equals("It's a draw! Try again to see who wins!"))
+            // If the results are not a draw, then breaks out of the while loop. making the continueGame
+            // variable false and ends the game.
+            // If they do equal "It's a draw!", then displays message and restarts the loop.
+            if (!results.equals("It's a draw!"))
             {
-                break;
+                continueGame = false;
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Play again to determine a winner!");
             }
         }
     }
@@ -72,10 +80,10 @@ public class RockPaperScissorGame {
     // Method to compare the strings userChoice and computerChoice as the parameters.
     public static String determineWinner(String userChoice, String computerChoice)
     {
-        // If the choices are equals, displays the tie message.
+        // If the choices are equals, displays specific draw message to the method.
         if (userChoice.equals(computerChoice))
         {
-            return "It's a tie! Both chose: " + computerChoice;
+            return "It's a draw!";
         }
         // If the userChoice selects a certain option, using the logical operator AND the computerChoice
         // equals a specific option then it will display the user as the winner.
