@@ -42,12 +42,14 @@ public class FileLetterCounter
             // Open a file to read using FileReader and Scanner
             FileReader fileReader = new FileReader("C:/Users/burres/Desktop/output.txt");
             Scanner fileScanner = new Scanner(fileReader);
-
+            FileWriter fileWriter = new FileWriter("/Users/burres/Desktop/output.txt");
+            PrintWriter printWriter = new PrintWriter(fileWriter);
             // While loop to continue as long as there is another line to read in the file
             while (fileScanner.hasNextLine())
             {
                 // Stores next line of file as nextLine variable and reads next line in file
                 String nextLine = fileScanner.nextLine();
+                printWriter.println("Age: " + age);
 
                 // For loop iterates through each character and index increments by 1
                 for (int i = 0; i < nextLine.length(); i += 1)
