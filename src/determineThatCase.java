@@ -13,26 +13,20 @@ public class determineThatCase
         //The variable letter will hold the character inputted.
         char letter = input.charAt(0);
 
-        // Displays output message in an if, else-if, else statement.
-        String message;
-
-        //Uses relational operators to determine relationship between multiple character values.
-        if (letter >= 'A' && letter <= 'Z')
+        //Uses the string comparison method to determine character values.
+        if (Character.isUpperCase(letter))
         {
-            message = "You entered an UPPERCASE letter!";
+            JOptionPane.showMessageDialog(null,"The letter is UPPERCASE.");
         }
-        else if (letter >= 'a' && letter <= 'z')
+        else if (Character.isLowerCase(letter))
         {
-            message = "You entered a lowercase letter!";
+            JOptionPane.showMessageDialog(null,"The letter is lowercase.");
         }
         else
         {
-            message = "Invalid input. I cannot determine the case of a value other than an alphabetical " +
-                    "character. Please try again";
+            JOptionPane.showMessageDialog(null,"Invalid input. I cannot determine the case of " +
+                    "a value other than an alphabetical character. Please try again.");
         }
-
-        // Displays the results
-        JOptionPane.showMessageDialog(null, message);
 
         // Ends the program
         System.exit(0);
