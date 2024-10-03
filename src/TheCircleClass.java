@@ -26,19 +26,17 @@ public class TheCircleClass {
                 // Creates a circle object with the user's inputted radius.
                 Circle circle = new Circle(radius);
 
+                // Sets the radius from the setRadius accessor method.
+                circle.setRadius(radius);
+
                 // Calculate and the circle's results using a format that stacks the outputs, places commas,
                 // and uses up to 2 decimal places. Gathers specified method from created circle object.
                 String message = String.format(
-                        "Circle Results:\n" +
-                                "Radius: %,.2f\n" +
-                                "Area: %,.2f\n" +
-                                "Diameter: %,.2f\n" +
-                                "Circumference: %,.2f",
+                        "Circle Results:\n Radius: %,.2f \nArea: %,.2f \nDiameter: %,.2f \nCircumference: %,.2f",
                         circle.getRadius(),
                         circle.area(),
                         circle.diameter(),
                         circle.circumference());
-
                 // Display results of the circle dimensions with title.
                 JOptionPane.showMessageDialog(null, message, "Circle Information", JOptionPane.INFORMATION_MESSAGE);
 
@@ -124,7 +122,7 @@ class Circle
 class circlePanel extends JPanel
 {
     // Declares private field for the radius.
-    private double radius;
+    private final double radius;
 
     // Constructor method to initialize the radius.
     public circlePanel(double radius)
