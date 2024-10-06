@@ -1,167 +1,144 @@
-
-
+// Challenge 06 - Daniel Gutierrez - KEA418 - 10/06/24
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 
-public class TheCircleClass {
-    public static void main(String[] args) {
+public class TheCircleClass
+{
+    public static void main(String[] args){
 
-        // Starts an infinite loop requiring the user to use a proper input.
-        while (true)
-        {
-            try
-            {
-                // Asks user for the radius.
-                String radiusInput = JOptionPane.showInputDialog("Please enter the radius of the circle: ");
+        // Creates infinite loop until user inputs correct input or exits.
+        while(true) {
+            try {
+                /*
 
-                // Exception handling if user cancels or exits at the input window.
-                if (radiusInput == null) {
-                    break;
+                If user input would be taken in as a double, clicking "Cancel" or "X" would return as null.
+                Double primitive data type cannot be null causing an error "Cannot invoke 'String.trim()' because 'in' is null."
+                This would prevent the user from exiting unless they proceed with a number.
+                To counter this error, user input is a string, checked if null, then converted to double if a number.
+                Allows for a cleaner exit for user.
+
+                */
+
+                // Asks user for the radius as an input for exceptions.
+                String input = JOptionPane.showInputDialog("Please enter the radius of the circle: ");
+
+                if (input == null){
+                    System.exit(0);
                 }
-                // Converts string into a double.
-                double radius = Double.parseDouble(radiusInput);
+
+                double radius = Double.parseDouble(input);
 
                 // Creates a circle object with the user's inputted radius.
-                Circle circle = new Circle(radius);
+                circle Circle = new circle(radius);
 
-                // Sets the radius from the setRadius accessor method.
-                circle.setRadius(radius);
+                // Setter sets radius.
+                Circle.setRadius(radius);
 
-                // Calculate and the circle's results using a format that stacks the outputs, places commas,
-                // and uses up to 2 decimal places. Gathers specified method from created circle object.
+                // Uses format specifier to have more presentable results
                 String message = String.format(
-                        "Circle Results:\n Radius: %,.2f \nArea: %,.2f \nDiameter: %,.2f \nCircumference: %,.2f",
-                        circle.getRadius(),
-                        circle.area(),
-                        circle.diameter(),
-                        circle.circumference());
-                // Display results of the circle dimensions with title.
-                JOptionPane.showMessageDialog(null, message, "Circle Information", JOptionPane.INFORMATION_MESSAGE);
+                        "Circle Results%n" + "Radius: %,.2f%n" + "Area: %,.2f%n" + "Diameter: %,.2f%n" + "Circumference: %,.2f",
+                        Circle.getRadius(), Circle.area(), Circle.diameter(), Circle.circumference());
 
-                // Creates window that shows dimensions based on user's radius input.
-                JFrame frame = new JFrame("Circle Drawing");        // Title of window.
-                frame.add(new circlePanel(radius));// Creates new object then adds radius arg from circlePanel class.
-                frame.setSize(500,500);                     // Sets size to default W&H of 500 pixels.
-                frame.setVisible(true);                                 // Displays the window.
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   // Closes window when button is clicked.
+                JOptionPane.showMessageDialog(null, message);   // Display message.
 
+                // Helps set the size of the frame to not make the user adjust their window.
+                int frameSize;
+                if (radius <= 100 ) {
+                    frameSize = 200;
+                }
+                else {
+                    radius *= 1.5;
+                    frameSize = (int) (radius * 1.5);
+                }
+
+                // Creates window frame to draw output of the circle.
+                JFrame frame = new JFrame("Circle Drawing");
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.getContentPane().add(Circle);
+                frame.setSize(frameSize, frameSize);
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
+                frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
                 break;
             }
-
-            // Catch block exceptions if invalid number, negative number, and any other exception.
-            catch (NumberFormatException e)
-            {
-                JOptionPane.showMessageDialog(null, "Error: Invalid number format. Please enter " +
-                        "a positive number.");
-            }
-            catch (IllegalArgumentException e)
-            {
-                JOptionPane.showMessageDialog(null, "Error: " + e.getMessage() + ". Please enter " +
-                        "a positive number.");
-            }
-            catch (Exception e)
-            {
+            // Catch block for any general exception.
+            catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "An unexpected error occurred: " + e.getMessage());
             }
         }
     }
 }
 
-class Circle
-{
-
+// Class to extend the JPanel
+class circle extends JPanel{
     // Creates private field and constant variable.
     private double radius;
     private final double pi = 3.14159;
 
-    // Constructor method that accepts the radius of the circle as an argument and throws error if the radius is not
-    // a positive number.
-    public Circle(double radius)
-    {
-        if (radius <= 0)
-        {
-            throw new IllegalArgumentException("Radius must be positive");
+    // Constructor method that accepts the radius of the circle as an argument. Throws error if not a positive number.
+    public circle(double radius){
+        if (radius <= 0){
+            throw new IllegalArgumentException("Radius must be greater than 0");
         }
         this.radius = radius;
     }
 
     // Mutator method for the radius.
-    public void setRadius(double radius)
-    {
+    public void setRadius(double radius){
         this.radius = radius;
     }
 
     // Accessor method for the radius field.
-    public double getRadius()
-    {
+    public double getRadius(){
         return radius;
     }
 
     // Method to calculate Area.
-    public double area()
-    {
+    public double area(){
         return pi * radius * radius;
     }
 
-    // Method to calculate the Diameter.
-    public double diameter()
-    {
+    // Method to calculate diameter
+    public double diameter(){
         return radius * 2;
     }
 
-    // Method to calculate the circumference.
-    public double circumference()
-    {
+    // Method to calculate the circumference
+    public double circumference(){
         return 2 * pi * radius;
-    }
-}
-
-// Class to extend the JPanel
-class circlePanel extends JPanel
-{
-    // Declares private field for the radius.
-    private final double radius;
-
-    // Constructor method to initialize the radius.
-    public circlePanel(double radius)
-    {
-        this.radius = radius;
     }
 
     // Overrides the default paintComponent inorder to draw the circle.
     @Override
-    protected void paintComponent(Graphics g)
-    {
-        // Super class JComponent, calls the painComponent method with the graphics object.
+    protected void paintComponent(Graphics g){
+        // Super class JComponent, calls the paintComponent method with the graphics object.
         super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g; // Converts graphics (g) object to graphics2D variable (g2d).
+        Graphics2D g2d = (Graphics2D) g;    // Coverts graphics (g) object to graphics2D variable (g2d).
 
-        // Uses renderingHints object to apply antialiasing which smooths out the circle.
-        RenderingHints rh = new RenderingHints(
-        RenderingHints.KEY_ANTIALIASING,
-        RenderingHints.VALUE_ANTIALIAS_ON);
+        // Uses renderingHints object to apply antialiasing which smooths out the circle edges.
+        RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setRenderingHints(rh);
 
         // Get the width and height of the panel.
         int width = getWidth();
         int height = getHeight();
 
-        // Calculate the center of the panel by dividing dimension in half.
+        // Calculates the center of the panel by dividing dimension in half.
         int centerX = width / 2;
         int centerY = height / 2;
 
-        // Calculates the top-left corner of the circle.
-        int x = (int) (centerX - radius);
-        int y = (int) (centerY - radius);
+        // Calculates the top-left corner of the circle to find center.
+        int x = (width - centerX) / 2;
+        int y = (height - centerY) / 2;
 
-        // Makes the circle output a green color.
-        Ellipse2D.Double e = new Ellipse2D.Double(x, y, radius * 2, radius * 2);
+        // Makes the circle output green in color.
+        Ellipse2D.Double e = new Ellipse2D.Double(x, y, radius, radius);
         g2d.setColor(Color.green);
         g2d.fill(e);
 
         // Draws the circle.
-        g2d.draw(new Ellipse2D.Double(x, y, radius * 2, radius * 2));
+        g2d.draw(new Ellipse2D.Double(x, y, radius, radius));
     }
 }
