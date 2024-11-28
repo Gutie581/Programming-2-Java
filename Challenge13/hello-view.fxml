@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0"
+      xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gutierrez.dormmealcalc.DormMealCalcController">
+   <ComboBox fx:id="mealComboBox" layoutX="363.0" layoutY="143.0" prefWidth="150.0" />
+   <ComboBox fx:id="dormComboBox" layoutX="78.0" layoutY="143.0" prefWidth="150.0" />
+   <Label fx:id="dormTitle" layoutX="43.0" layoutY="106.0" text="Please select your dormitory: ">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Label>
+   <Label fx:id="mealPlanTitle" layoutX="324.0" layoutY="106.0" text="Please select your meal plan:">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Label>
+   <Label fx:id="title" layoutX="160.0" layoutY="34.0" text="Dorm &amp; Meal Plan Calculator">
+      <font>
+         <Font size="24.0" />
+      </font>
+   </Label>
+   <Label fx:id="TotalCharges" layoutX="33.0" layoutY="252.0" text="Total Charges for the Semester: ">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Label>
+   <Label fx:id="totalCostLabel" layoutX="285.0" layoutY="252.0" prefHeight="27.0" text=" ">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Label>
+</Pane>
